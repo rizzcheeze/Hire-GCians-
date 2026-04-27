@@ -1,46 +1,4 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "functions": {
-    "api/index.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/", "destination": "/hire_gcians_landing_page_full.html" },
-    { "source": "/landing", "destination": "/hire_gcians_landing_page_full.html" },
-    { "source": "/auth", "destination": "/hire_gcians_auth.html" },
-    { "source": "/student/dashboard", "destination": "/hire_gcians_student_dashboard.html" },
-    { "source": "/student/jobs", "destination": "/hire_gcians_job_listing.html" },
-    { "source": "/student/applications", "destination": "/hire_gcians_my_applications.html" },
-    { "source": "/student/saved", "destination": "/hire_gcians_saved_jobs.html" },
-    { "source": "/student/profile", "destination": "/hire_gcians_student_profile.html" },
-    { "source": "/student/resume", "destination": "/hire_gcians_skills_resume.html" },
-    { "source": "/student/settings", "destination": "/hire_gcians_settings.html" },
-    { "source": "/student/public-profile", "destination": "/hire_gcians_public_profile.html" },
-    { "source": "/employer/dashboard", "destination": "/hire_gcians_employer_dashboard.html" },
-    { "source": "/employer/posting", "destination": "/hire_gcians_employer_posting.html" },
-    { "source": "/employer/applicants", "destination": "/hire_gcians_employer_applicants.html" },
-    { "source": "/employer/listings", "destination": "/hire_gcians_employer_active_listings.html" },
-    { "source": "/employer/hired", "destination": "/hire_gcians_hired_students.html" },
-    { "source": "/employer/company", "destination": "/hire_gcians_company_profile.html" },
-    { "source": "/employer/settings", "destination": "/hire_gcians_employer_settings.html" },
-    { "source": "/jobs", "destination": "/hire_gcians_job_listing.html" },
-    { "source": "/about", "destination": "/hire_gcians_about.html" },
-    { "source": "/for-employers", "destination": "/hire_gcians_for_employers.html" },
-    { "source": "/admin", "destination": "/hire_gcians_admin.html" },
-    { "source": "/routes", "destination": "/hire_gcians_route_index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    }
-  ]
+  "outputDirectory": ".",
+  "rewrites": [{ "source": "/(.*)", "destination": "/$1" }]
 }
