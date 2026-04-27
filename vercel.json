@@ -1,4 +1,3 @@
 {
-  "outputDirectory": ".",
-  "rewrites": [{ "source": "/(.*)", "destination": "/$1" }]
+  "version": 2
 }
