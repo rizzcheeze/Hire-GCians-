@@ -4,13 +4,14 @@
 
 This project now has two important realities:
 
-- the current working baseline is a client-side MVP built from static HTML mockups plus an Express/PostgreSQL backend scaffold
+- the current working baseline is a static-HTML frontend at the project root with shared CSS/JS, plus a parallel Django/AI backend scaffold at the project root
 - the target system is the approved proposal architecture: `Vue.js` frontend + `Django REST` backend + `Celery` + `Redis` + `Ollama` + `PyMuPDF` + `Tesseract OCR` + `pgvector`
 
 If reopening this project in a future session, start here, then read:
 - `hire_gcians.js`
 - `hire_gcians.css`
-- `backend/`
+- `frontend/`
+- `core/`, `students/`, `jobs/`, `ai_pipeline/`, `ai/`
 - `C:\Users\yana.LAPTOP-I8ASRTS6\ESPIRIDION.ALLYANARIZZ.REVISED.APPROVED.PROPOSAL.docx.pdf`
 
 Recommended prompt for future sessions:
@@ -32,9 +33,10 @@ Recommended prompt for future sessions:
 - standalone HTML pages
 - shared styles in `hire_gcians.css`
 - shared app logic and seeded state in `hire_gcians.js`
+- separate presentation-first frontend copy in `frontend/`
 - browser `localStorage` persistence
-- backend scaffold in `backend/` with Express + PostgreSQL
-- live Vercel deployment for the current MVP
+- Django/AI scaffold at the project root with app folders for `students`, `jobs`, `ai_pipeline`, `ai`, and `tasks`
+- live Vercel deployment from the project root
 
 ### Target architecture
 - `Vue.js` frontend
@@ -47,8 +49,9 @@ Recommended prompt for future sessions:
 - semantic job matching with cosine similarity
 
 ### Current reality vs target
-- the deployed/static MVP is still the operational reference implementation
-- the Express backend in `backend/` is a useful transition scaffold, not the final target architecture
+- the deployed static frontend at the project root is still the operational reference implementation
+- the separate `frontend/` folder is now the presentation-first copy for local walkthroughs and design work
+- the Django scaffold at the project root is the active backend direction in this workspace
 - the approved proposal architecture is now the intended direction for future development
 
 ## Current Routes
@@ -78,14 +81,26 @@ Recommended prompt for future sessions:
 - `hire_gcians_company_profile.html`
 - `hire_gcians_employer_settings.html`
 
-### Admin route
+### Admin overview route
 - `hire_gcians_admin.html`
+
+### Admin detail routes
+- `hire_gcians_admin_users.html`
+- `hire_gcians_admin_listings.html`
+- `hire_gcians_admin_applications.html`
+- `hire_gcians_admin_ai_logs.html`
+- `hire_gcians_admin_employers.html`
+- `hire_gcians_admin_announcements.html`
+- `hire_gcians_admin_reports.html`
+- `hire_gcians_admin_settings.html`
+- `hire_gcians_admin_audit_logs.html`
 
 ## What Works Now
 
 ### Student side
 - login/signup flow
 - job browsing and filtering
+- clean-route navigation across student pages on Vercel (`/student/...`)
 - job detail rendering
 - save/unsave jobs
 - apply/withdraw applications
@@ -98,6 +113,7 @@ Recommended prompt for future sessions:
 
 ### Employer side
 - employer dashboard metrics
+- clean-route navigation across employer pages on Vercel (`/employer/...`)
 - posting draft and publish flow
 - live posting preview
 - applicants list and detail
@@ -110,6 +126,8 @@ Recommended prompt for future sessions:
 
 ### Admin side
 - overview metrics
+- dedicated admin tab pages for users, listings, applications, AI logs, employers, announcements, reports, settings, and audit logs
+- clean-route navigation across admin pages on Vercel (`/admin/...`)
 - recent users table
 - active listings table
 - health card
@@ -142,9 +160,21 @@ Recommended prompt for future sessions:
 
 ### Deployment prep
 - added `vercel.json` with root routing, clean public paths, and basic security headers
-- public marketing/auth pages now label the app as a client-side MVP demo
 - seeded jobs are now split across multiple employer accounts instead of one employer owning every sample listing
 - added `POST_DEPLOY_SMOKE_TEST.md` to standardize auth, student, employer, admin, route-refresh, and responsive checks after each release
+
+### Frontend presentation split
+- added a separate `frontend/` folder as a presentation-first copy with its own `assets/` folder, standalone `index.html`, and full public/student/employer/admin page set
+- upgraded the presentation copy with stronger landing/dashboard styling, completed admin tabs, and internal local page-to-page navigation
+
+### Vercel route normalization
+- root deployable pages now use clean Vercel routes instead of relying mainly on raw `hire_gcians_*.html` links
+- `vercel.json` now includes `/student/jobs` plus admin detail rewrites like `/admin/users`, `/admin/listings`, `/admin/applications`, `/admin/ai-logs`, `/admin/reports`, and related routes
+- `hire_gcians_route_index.html` is now treated as a public route page and lists the full clean-route set
+
+### Presentation copy cleanup
+- public-facing `MVP`, `demo`, and similar disclaimer language was removed from the root deployable frontend and the separate `frontend/` copy
+- landing, auth, about, route index, employer marketing, resume, and admin/settings copy now read as product-facing presentation text
 
 ### Employer account state
 - employer settings are now stored per employer account instead of one shared demo object
@@ -152,9 +182,10 @@ Recommended prompt for future sessions:
 - saving employer settings now updates that employer's organization name and synced listing company labels
 
 ### Deployment status
-- deployed to Vercel as a public MVP on `2026-04-09`
+- deployed to Vercel on `2026-04-09`
 - root route and clean public routes are configured through `vercel.json`
 - nested routes use root-absolute CSS/JS/page links for Vercel rewrite compatibility
+- the current deploy target should remain the project root, not `frontend/`
 
 ### Backend hardening
 - backend repository layer now uses UUID-based prefixed IDs instead of `Date.now()`-based IDs
@@ -182,6 +213,8 @@ Recommended prompt for future sessions:
 - `ai/matcher.py` is now implemented with cosine similarity, percentage mapping, and ranked vector matching
 - first-pass Django model layer is now implemented in `students/models.py`, `jobs/models.py`, and `ai_pipeline/models.py`
 - parser + embedder have been verified end-to-end locally on `2026-04-23`
+- Django migration history and the live PostgreSQL schema were rechecked on `2026-04-29`; `showmigrations`, `migrate --plan`, and `makemigrations --check --dry-run` all reported a clean aligned state
+- the `jobs` API detail route now accepts string job IDs, matching the live `jobs.id` primary key used by the frontend data model
 
 ## Known Migration / Cleanup State
 
@@ -189,9 +222,9 @@ These are not blockers, but they still exist:
 
 - some `department` references remain inside `hire_gcians.js` only as compatibility fallbacks for older `localStorage` data
 - some marketing/explanatory text is still static by design
-- browser `localStorage` means deployed demo state is still per-browser and not shared across users/devices
+- browser `localStorage` means deployed state is still per-browser and not shared across users/devices
 
-## Demo Accounts
+## Seed Accounts
 
 ### Student
 - email: `allyana@gordoncollege.edu.ph`
@@ -224,31 +257,30 @@ Still missing:
 
 ### Persistence and backend
 - still uses `localStorage`
-- backend scaffold now exists in `backend/`, but the frontend is not wired to it yet
+- Django backend scaffold exists at the project root, but the frontend is not wired to it yet
 - live server-backed persistence is not active in the frontend yet
 - role-protected backend routes now exist for auth, jobs, applications, saved jobs, employer applicants, employer settings, and resume metadata
-- current backend stack is Express, while the target stack in the proposal is Django REST
+- current frontend deploy is still static/local-state driven, while the target stack in the proposal is Vue + Django REST
 
 ## Migration Path
 
-1. Preserve the current MVP as the UI/flow reference while building the target stack in parallel.
+1. Preserve the current static frontend as the UI/flow reference while building the target stack in parallel.
 2. Stand up the proposal-aligned backend foundation: `Django REST` + PostgreSQL 18 + `Celery` + `Redis`.
 3. Rebuild the resume pipeline on the target backend: upload -> `PyMuPDF` extraction -> `Tesseract OCR` fallback -> LLM structuring -> embeddings -> semantic scoring.
 4. Move frontend consumers from static/local demo state to real API-driven state.
-5. Replace demo-only matching with real resume-derived matching and employer-facing rationale output.
+5. Replace local preview-only matching with real resume-derived matching and employer-facing rationale output.
 
 ## Best Next Steps
 
-1. Reconcile Django migration history with the actual PostgreSQL tables before applying further schema changes.
-2. Make the new Django model layer safe to migrate for resumes, parsed profiles, job embeddings, student embeddings, and match results.
-3. Add the first Django REST endpoints for resume upload and match retrieval.
+1. Redeploy the root project to Vercel so the clean-route navigation, admin detail pages, and presentation-copy cleanup are live.
+2. Run the route smoke test across `/`, `/routes`, `/student/dashboard`, `/student/jobs`, `/employer/dashboard`, `/admin`, and `/admin/users`.
+3. Add automated API coverage for the current Django endpoints beyond the new job-detail regression test, especially resume upload and match retrieval.
 4. Wire Celery tasks around extractor -> parser -> embedder so resume processing runs asynchronously.
-5. Verify OCR fallback end-to-end with a real scanned PDF and confirm Poppler availability/runtime behavior.
+5. Start replacing `localStorage`-backed frontend reads with real API-driven student/job/match data.
 
 ## Active In-Progress Work
 
 - backend foundation started on `2026-04-18`
-- new backend scaffold lives in `backend/`
 - initial PostgreSQL schema and seed data now mirror the current client-side MVP state
 - auth now includes hashed seed credentials, signup support, JWT verification, and `/api/me`
 - core protected API now includes employer job create/update, student applications, saved jobs, employer applicants, and employer settings
@@ -262,6 +294,10 @@ Still missing:
 - `backend/.env` now contains the active local AI service config, including `OLLAMA_LLM_MODEL=qwen3:4b` and `OLLAMA_EMBED_MODEL=nomic-embed-text`
 - `ai/extractor.py`, `ai/parser.py`, `ai/embedder.py`, and `ai/matcher.py` were implemented and live-verified on `2026-04-23`
 - first-pass Django models for students/jobs/AI pipeline were implemented on `2026-04-23`, but migration rollout is blocked by previously-applied placeholder Django migrations that do not fully match the current database state
+- Django migration alignment was revalidated on `2026-04-29`; the previously noted migration-rollout blocker is no longer active in this workspace
+- a separate `frontend/` presentation copy was created on `2026-04-29` with its own assets and complete page set
+- the root Vercel frontend was updated on `2026-04-29` to use clean student/employer/admin routes and dedicated admin detail pages
+- public-facing MVP/demo wording was removed from the root deployable frontend and the `frontend/` presentation copy on `2026-04-29`
 - frontend is still using `localStorage`; migration to backend is not wired yet
 
 ## Resume-After-Reopen Instructions
@@ -270,6 +306,6 @@ If you come back later, tell the assistant:
 - `Read PROJECT_STATUS.md first.`
 - `Use the current role model: students, third-party employers, and college-admin oversight.`
 - `Resume matching must stay PDF/AI-driven, not manually entered by students.`
-- `Treat the current static HTML + Express app as the MVP baseline, but aim future work at the approved Vue + Django + Celery + Redis + Ollama proposal architecture.`
+- `Treat the current static HTML frontend as the UI baseline, but aim future work at the approved Vue + Django + Celery + Redis + Ollama proposal architecture.`
 
 If a feature is actively in progress, add that task here before closing the tab.

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hire GCians! — Platform Overview</title>
+<link rel="stylesheet" href="./assets/hire_gcians.css">
+</head>
+<body class="hg-admin" data-page="admin">
+<div class="dash">
+  <aside class="sidebar">
+    <div class="s-logo">Hire <span>GCians!</span><div class="admin-badge">Admin panel</div></div>
+    <div class="s-user">
+      <div class="s-avatar">GC</div>
+      <div><div class="s-name">GC Official</div><div class="s-role">Gordon College oversight</div></div>
+    </div>
+    <ul class="s-nav">
+      <li class="active" onclick="location.href='./hire_gcians_admin.html'">⬡ Overview</li>
+      <li onclick="location.href='./hire_gcians_admin_users.html'">⬡ Users</li>
+      <li onclick="location.href='./hire_gcians_admin_listings.html'">⬡ All listings</li>
+      <li onclick="location.href='./hire_gcians_admin_applications.html'">⬡ Applications</li>
+      <li onclick="location.href='./hire_gcians_admin_ai_logs.html'">⬡ AI match logs</li>
+      <div class="s-nav-label">Management</div>
+      <li onclick="location.href='./hire_gcians_admin_employers.html'">⬡ Employers</li>
+      <li onclick="location.href='./hire_gcians_admin_announcements.html'">⬡ Announcements</li>
+      <li onclick="location.href='./hire_gcians_admin_reports.html'">⬡ Reports</li>
+      <div class="s-nav-label">System</div>
+      <li onclick="location.href='./hire_gcians_admin_settings.html'">⬡ Settings</li>
+      <li onclick="location.href='./hire_gcians_admin_audit_logs.html'">⬡ Audit logs</li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <section class="presentation-banner admin-banner">
+      <div>
+        <div class="presentation-kicker">Presentation Flow</div>
+        <div class="presentation-title">Admin oversight with completed tab coverage</div>
+      </div>
+      <div class="presentation-chip-row">
+        <span class="presentation-chip">Users</span>
+        <span class="presentation-chip">Listings</span>
+        <span class="presentation-chip">Applications</span>
+        <span class="presentation-chip">AI logs</span>
+      </div>
+    </section>
+
+    <div class="main-header">
+      <div>
+        <div class="page-title">Platform Overview</div>
+        <div class="page-sub">Gordon College official oversight for Hire GCians!</div>
+      </div>
+      <div class="live-badge"><div class="live-dot"></div> Presentation mode</div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="metric-val">342</div><div class="metric-label">Registered students</div><div class="metric-change">+12 this week</div></div>
+      <div class="metric"><div class="metric-val">120</div><div class="metric-label">Active job listings</div><div class="metric-change">+8 this week</div></div>
+      <div class="metric"><div class="metric-val">1,204</div><div class="metric-label">Total applications</div><div class="metric-change">+47 this week</div></div>
+      <div class="metric"><div class="metric-val">88%</div><div class="metric-label">Avg. AI match score</div><div class="metric-change">↑ 2% vs last month</div></div>
+    </div>
+    <div class="layout">
+      <div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Recent users</div><div class="panel-action"><a href="./hire_gcians_admin_users.html">Open tab →</a></div></div>
+          <div class="t-head users-grid"><div>User</div><div>Role</div><div>Program</div><div>Joined</div><div>Status</div></div>
+          <div id="admin-users-table"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Active employer listings</div><div class="panel-action"><a href="./hire_gcians_admin_listings.html">Open tab →</a></div></div>
+          <div class="t-head jobs-grid"><div>Position</div><div>Employer</div><div>Applicants</div><div>Match avg.</div><div>Status</div></div>
+          <div id="admin-jobs-table"></div>
+        </div>
+      </div>
+      <div>
+        <div class="rp-card stage-card">
+          <div class="rp-title">Presentation talking points</div>
+          <div class="panel-row">Start with the landing page, then switch to the student dashboard to show match scoring.</div>
+          <div class="panel-row">Move to employer listings and applicants to explain recruitment flow.</div>
+          <div class="panel-row">End here to show college-admin visibility across every major tab.</div>
+        </div>
+        <div class="rp-card"><div class="rp-title">Platform health</div><div id="admin-health-card"></div></div>
+        <div class="rp-card"><div class="rp-title">System alerts</div><div id="admin-alerts-card"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="./assets/hire_gcians.js"></script>
+</body>
+</html>
+
+

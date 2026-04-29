@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hire GCians! — My Applications</title>
+<link rel="stylesheet" href="./assets/hire_gcians.css">
+</head>
+<body class="hg-my-applications" data-page="my-applications">
+<div class="dash">
+  <aside class="sidebar">
+    <div class="s-logo">Hire <span>GCians!</span></div>
+    <div class="s-user">
+      <div class="s-avatar">AE</div>
+      <div><div class="s-name">Allyana Espiridion</div><div class="s-prog">BSCS 2-B</div></div>
+    </div>
+    <ul class="s-nav">
+      <li onclick="location.href='./hire_gcians_student_dashboard.html'">⬡ Dashboard</li>
+      <li onclick="location.href='./hire_gcians_job_listing.html'">⬡ Browse jobs</li>
+      <li class="active">⬡ My applications <span class="badge">3</span></li>
+      <li onclick="location.href='./hire_gcians_saved_jobs.html'">⬡ Saved</li>
+      <div class="s-nav-label">Account</div>
+      <li onclick="location.href='./hire_gcians_student_profile.html'">⬡ Edit profile</li>
+      <li onclick="location.href='./hire_gcians_skills_resume.html'">⬡ Skills &amp; resume</li>
+      <li onclick="location.href='./hire_gcians_settings.html'">⬡ Settings</li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <div class="page-title">My Applications</div>
+    <div class="page-sub">Track every role you've applied to and where you stand.</div>
+
+    <div class="summary-row" id="applications-summary"></div>
+
+    <div class="status-tabs">
+      <div class="stab active" onclick="filterApps('all',this)">All <span class="stab-count">3</span></div>
+      <div class="stab" onclick="filterApps('pending',this)">Pending <span class="stab-count">1</span></div>
+      <div class="stab" onclick="filterApps('review',this)">Under review <span class="stab-count">1</span></div>
+      <div class="stab" onclick="filterApps('interview',this)">Interview <span class="stab-count">1</span></div>
+      <div class="stab" onclick="filterApps('hired',this)">Hired <span class="stab-count">0</span></div>
+    </div>
+
+    <div id="apps-list"></div>
+  </main>
+</div>
+<script src="./assets/hire_gcians.js"></script>
+</body>
+</html>
+
+
+
+
